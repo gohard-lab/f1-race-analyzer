@@ -3,6 +3,9 @@ import fastf1
 import matplotlib.pyplot as plt
 import os
 
+# 0. 화면 테마
+plt.style.use('dark_background')
+
 # 1. FastF1 캐시 설정
 if not os.path.exists('cache'):
     os.makedirs('cache')
