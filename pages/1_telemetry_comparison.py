@@ -66,4 +66,4 @@ if st.sidebar.button("비교하기"):
             plt.tight_layout()
             st.pyplot(fig)
     except Exception as e:
-        st.error(f"데이터 로드 실패: {e}")
+        st.error(f"데이터 로드 실패 : {e}")

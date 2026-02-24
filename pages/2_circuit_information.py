@@ -15,7 +15,7 @@ if st.button("일정 불러오기"):
         df = schedule[['RoundNumber', 'EventName', 'Country', 'Location', 'EventDate']]
         df.columns = ['라운드', '그랑프리 이름', '국가', '개최지', '결승전 날짜']
         
-        # 시간 데이터 깔끔하게 자르기
+        # #시간 데이터 깔끔하게 자르기
         df['결승전 날짜'] = pd.to_datetime(df['결승전 날짜']).dt.strftime('%Y-%m-%d')
 
         st.dataframe(df, use_container_width=True, hide_index=True)
