@@ -1,10 +1,18 @@
 import streamlit as st
 import fastf1
+import datetime
 
 st.set_page_config(page_title="드라이버 순위", layout="wide")
 st.title("🏆 경기별 드라이버 최종 순위")
 
-YEARS = [2024, 2023, 2022, 2021]
+
+# 1. 오늘 날짜 기준으로 '연도'만 숫자(예: 2026)로 쏙 빼옵니다.
+current_year = datetime.datetime.now().year
+
+# 2. range에 적용: 현재 연도부터 2018년까지 역순(-1)으로 목록을 만듭니다.
+# (range는 두 번째 숫자 바로 앞까지만 만들어주기 때문에, 2018년까지 보려면 2017로 적어야 합니다)
+YEARS = st.selectbox("연도", range(current_year, 2017, -1))
+# YEARS = [2024, 2023, 2022, 2021]
 CIRCUITS = ['Bahrain', 'Saudi Arabia', 'Australia', 'Japan', 'China', 'Miami', 'Emilia Romagna', 'Monaco', 'Canada', 'Spain', 'Austria', 'Great Britain', 'Hungary', 'Belgium', 'Netherlands', 'Italy', 'Azerbaijan', 'Singapore', 'United States', 'Mexico', 'Sao Paulo', 'Las Vegas', 'Qatar', 'Abu Dhabi']
 
 col1, col2 = st.columns(2)
