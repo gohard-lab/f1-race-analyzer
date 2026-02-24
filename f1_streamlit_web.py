@@ -1,10 +1,5 @@
 import streamlit as st
-import streamlit_analytics
 
-# 추적 시작!
-with streamlit_analytics.track():
-    st.title("F1 데이터 분석 대시보드")
-    
 st.set_page_config(page_title="F1 데이터 대시보드", page_icon="🏎️", layout="wide")
 
 st.title("🏎️ F1 데이터 분석 대시보드에 오신 것을 환영합니다!")
