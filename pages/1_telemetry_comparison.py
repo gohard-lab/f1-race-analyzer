@@ -3,6 +3,7 @@ import fastf1
 import matplotlib.pyplot as plt
 import os
 
+#
 plt.style.use('dark_background')
 
 if not os.path.exists('cache'):

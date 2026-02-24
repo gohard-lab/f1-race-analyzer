@@ -30,4 +30,4 @@ if st.button("순위 결과 보기"):
             st.dataframe(df, use_container_width=True, hide_index=True)
             
     except Exception as e:
-        st.error(f"데이터를 불러올 수 없습니다. 레이스가 취소되었거나 아직 열리지 않았습니다. (에러 : {e})")
+        st.error(f"데이터를 불러올 수 없습니다. 레이스가 취소되었거나 아직 열리지 않았습니다. (에러: {e})")
