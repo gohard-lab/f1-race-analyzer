@@ -1,5 +1,6 @@
 import os
 import requests
+import streamlit as st # 상단에 추가
 
 
 # 1. 패키지가 있는지 확인하고, 없으면 조용히 넘어갑니다.
@@ -70,6 +71,8 @@ def log_app_usage(app_name: str, action: str, details: dict = None):
         # response = supabase.table('usage_logs').insert(log_data).execute()
         response = supabase.table('usage_logs').insert(log_data, returning='minimal').execute()
         
-    except Exception:
+    except Exception as e:
         # 에러가 나면 조용히 넘어가지 않고 화면에 빨간 글씨로 출력합니다!
-        pass
+        # pass
+        # 🚨 원래 있던 print()나 pass 대신, 화면에 에러를 강제로 띄웁니다!
+        st.error(f"트래커 에러 발생: {e}")
