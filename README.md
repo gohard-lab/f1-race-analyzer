@@ -27,21 +27,23 @@ F1 레이스 데이터를 수집, 분석하고 직관적으로 시각화하는 �
 git clone [https://github.com/gohard-lab/f1-race-analyzer.git](https://github.com/gohard-lab/f1-race-analyzer.git)
 cd f1-race-analyzer
 
-2. 의존성 설치 (Poetry 사용 시)
+### 2. 의존성 설치 (Poetry 사용 시)
 Bash
 # Poetry가 설치되어 있지 않다면 먼저 설치해주세요 (pip install poetry)
 poetry install
 (참고: 일반 pip를 사용할 경우 pip install . 명령어로 설치 가능합니다.)
 
-3. 환경 변수 설정
+### 3. 환경 변수 설정
 프로젝트 최상단에 .env 파일을 생성하고 Supabase 연결 정보를 입력합니다.
 
-Ini, TOML
+```Ini, TOML
 SUPABASE_URL="your_supabase_url"
 SUPABASE_KEY="your_supabase_anon_key"
-4. 애플리케이션 실행
-Bash
+
+### 4. 애플리케이션 실행
+```Bash
 poetry run streamlit run f1_telemetry_analyzer.py
+
 📂 프로젝트 구조
 보안 및 가독성을 위해 표준적인 형태의 변수명과 범용적인 주석 처리를 지향하여 코드를 작성했습니다.
 
