@@ -21,6 +21,7 @@ def get_supabase_client():
     # if _supabase_client is None and TRACKING_ENABLED:
         supabase_url = "https://gkzbiacodysnrzbpvavm.supabase.co"
         supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdremJpYWNvZHlzbnJ6YnB2YXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1NzE2MTgsImV4cCI6MjA4OTE0NzYxOH0.Lv5uVeNZOyo21tgyl2jjGcESoLl_iQTJYp4jdCwuYDU"
+
         _supabase_client = create_client(supabase_url, supabase_key)
     return _supabase_client
 
