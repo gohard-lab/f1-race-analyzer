@@ -1,6 +1,7 @@
 import sys
 import os
 import fastf1
+from tracker import log_app_usage
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton
 
 from animation_canvas import TelemetryAnimationCanvas
@@ -78,6 +79,7 @@ class F1DashboardWindow(QMainWindow):
         return ver_tel, ham_tel
 
 if __name__ == "__main__":
+    log_app_usage("f1_telemetry_web", "f1_telemetry_started")
     app = QApplication(sys.argv)
     window = F1DashboardWindow()
     window.show()

@@ -1,6 +1,7 @@
 import sys
 import numpy as np
 import fastf1 as ff1
+from tracker import log_app_usage
 from fastf1 import plotting
 from fastf1 import utils
 # 🔥 [수정] QFrame이 추가되었습니다.
@@ -16,17 +17,41 @@ import matplotlib.gridspec as gridspec
 import warnings
 
 import os
-# 1. 프로젝트 폴더 내에 캐시 파일들을 저장할 폴더 경로 지정
-cache_dir = './cache'
+# # 1. 프로젝트 폴더 내에 캐시 파일들을 저장할 폴더 경로 지정
+# cache_dir = './cache'
 
-# 2. 폴더가 없으면 자동 생성
+# # 2. 폴더가 없으면 자동 생성
+# if not os.path.exists(cache_dir):
+#     os.makedirs(cache_dir)
+
+# # 3. FastF1 캐시 활성화 ★
+# ff1.Cache.enable_cache(cache_dir)
+
+# # ---------------------------------------------------------
+
+
+# --- 수정된 캐시 설정 부분 ---
+
+# 1. PyInstaller로 만든 exe 환경인지, 그냥 파이썬 환경인지 확인해서 '진짜 폴더 위치'를 찾습니다.
+if getattr(sys, 'frozen', False):
+    # exe로 실행될 때: 실행 파일(exe)이 있는 폴더의 절대 경로를 가져옵니다.
+    application_path = os.path.dirname(sys.executable)
+else:
+    # VS Code에서 py로 실행될 때: 현재 파이썬 파일의 절대 경로를 가져옵니다.
+    application_path = os.path.dirname(os.path.abspath(__file__))
+
+# 2. 진짜 폴더 위치 아래에 'cache' 폴더 주소를 합칩니다.
+cache_dir = os.path.join(application_path, 'cache')
+
+# 3. 폴더가 없으면 자동 생성
 if not os.path.exists(cache_dir):
     os.makedirs(cache_dir)
 
-# 3. FastF1 캐시 활성화 ★
+# 4. FastF1 캐시 활성화 ★
 ff1.Cache.enable_cache(cache_dir)
 
-# ---------------------------------------------------------
+# ----------------------------
+
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 ff1.Cache.enable_cache('cache')
@@ -181,6 +206,8 @@ class F1AnalyzerApp(QMainWindow):
         self.layout.addLayout(control_layout)
 
     def run_analysis(self):
+        log_app_usage("f1_telemetry_exe", "run_analysis")
+
         QApplication.setOverrideCursor(QCursor(Qt.WaitCursor))
         self.btn_analyze.setEnabled(False)
         self.btn_analyze.setText("⏳ 로딩 중...")
@@ -332,6 +359,7 @@ class F1AnalyzerApp(QMainWindow):
         self.canvas.draw_idle()
 
 if __name__ == '__main__':
+    log_app_usage("f1_telemetry_exe", "f1_telemetry_started")
     app = QApplication(sys.argv)
     ex = F1AnalyzerApp()
     ex.show()
