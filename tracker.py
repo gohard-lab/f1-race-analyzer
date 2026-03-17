@@ -1,7 +1,7 @@
 import os
 import requests
 import streamlit as st # 상단에 추가
-
+from supabase import create_client
 
 # 1. 패키지가 있는지 확인하고, 없으면 조용히 넘어갑니다.
 # try:

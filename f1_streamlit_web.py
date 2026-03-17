@@ -1,27 +1,5 @@
 import streamlit as st
 
-
-from supabase import create_client
-
-
-# 다른 모든 코드들보다 무조건 먼저 실행되도록 맨 위에 배치합니다!
-st.write("🔍 [디버그] RLS 완벽 돌파 테스트 중...")
-try:
-    url = "https://gkzbiacodysnrzbpvavm.supabase.co" # (진짜 주소)
-    key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdremJpYWNvZHlzbnJ6YnB2YXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1NzE2MTgsImV4cCI6MjA4OTE0NzYxOH0.Lv5uVeNZOyo21tgyl2jjGcESoLl_iQTJYp4jdCwuYDU" # (진짜 키)
-    client = create_client(url, key)
-    
-    # 👇 끝에 returning='minimal'을 추가했습니다!
-    res = client.table('usage_logs').insert({"app_name": "f1_test", "action": "test_직접연결"}, returning='minimal').execute()
-    
-    st.success(" DB에 데이터 꽂힘! 문지기 통과 완료!")
-except Exception as e:
-    st.error(f" DB가 뱉어낸 진짜 에러: {e}")
-
-
-
-
-
 st.set_page_config(page_title="F1 데이터 대시보드", page_icon="🏎️", layout="wide")
 
 st.title("🏎️ F1 데이터 분석 대시보드에 오신 것을 환영합니다!")
