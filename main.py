@@ -8,17 +8,8 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHB
 from animation_canvas import TelemetryAnimationCanvas
 
 
-# 1. 프로젝트 폴더 내에 캐시 파일들을 저장할 폴더 경로 지정
-cache_dir = './f1_cache'
+from supabase import create_client
 
-# 2. 폴더가 없으면 자동 생성
-if not os.path.exists(cache_dir):
-    os.makedirs(cache_dir)
-
-# 3. FastF1 캐시 활성화 ★
-fastf1.Cache.enable_cache(cache_dir)
-
-# ---------------------------------------------------------
 
 st.markdown("---")
 st.write("🔍 [디버그] Supabase 돌직구 테스트 중...")
@@ -35,6 +26,23 @@ try:
 except Exception as e:
     st.error(f"❌ DB가 뱉어낸 진짜 에러: {e}")
 
+
+
+
+
+
+
+# 1. 프로젝트 폴더 내에 캐시 파일들을 저장할 폴더 경로 지정
+cache_dir = './f1_cache'
+
+# 2. 폴더가 없으면 자동 생성
+if not os.path.exists(cache_dir):
+    os.makedirs(cache_dir)
+
+# 3. FastF1 캐시 활성화 ★
+fastf1.Cache.enable_cache(cache_dir)
+
+# ---------------------------------------------------------
 
 # 앱 메인 파일 최상단에 작성
 def run_tracker():
