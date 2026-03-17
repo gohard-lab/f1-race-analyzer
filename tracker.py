@@ -74,6 +74,6 @@ def log_app_usage(app_name: str, action: str, details: dict = None):
         
     except Exception as e:
         # 에러가 나면 조용히 넘어가지 않고 화면에 빨간 글씨로 출력합니다!
-        # pass
+         pass
         # 🚨 원래 있던 print()나 pass 대신, 화면에 에러를 강제로 띄웁니다!
-        st.error(f"트래커 에러 발생: {e}")
+        # st.error(f"트래커 에러 발생: {e}")
