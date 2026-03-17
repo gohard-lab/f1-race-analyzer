@@ -1,5 +1,24 @@
 import streamlit as st
 
+
+from supabase import create_client
+
+
+# 다른 모든 코드들보다 무조건 먼저 실행되도록 맨 위에 배치합니다!
+st.write("🔍 [디버그] 테스트 코드 위치 변경 확인!")
+try:
+    url = "https://gkzbiacodysnrzbpvavm.supabase.co" # (진짜 주소로 살짝 바꿔주세요)
+    key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdremJpYWNvZHlzbnJ6YnB2YXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1NzE2MTgsImV4cCI6MjA4OTE0NzYxOH0.Lv5uVeNZOyo21tgyl2jjGcESoLl_iQTJYp4jdCwuYDU" # (진짜 키로 살짝 바꿔주세요)
+    client = create_client(url, key)
+    res = client.table('usage_logs').insert({"app_name": "f1_test", "action": "test_직접연결"}).execute()
+    st.success(f"✅ DB에 데이터 꽂힘! 응답 결과: {res.data}")
+except Exception as e:
+    st.error(f"❌ DB가 뱉어낸 진짜 에러: {e}")
+
+
+
+
+
 st.set_page_config(page_title="F1 데이터 대시보드", page_icon="🏎️", layout="wide")
 
 st.title("🏎️ F1 데이터 분석 대시보드에 오신 것을 환영합니다!")
