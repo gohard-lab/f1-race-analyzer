@@ -1,6 +1,7 @@
 import sys
 import os
 import fastf1
+import streamlit as st
 from tracker import log_app_usage
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton
 
@@ -18,6 +19,15 @@ if not os.path.exists(cache_dir):
 fastf1.Cache.enable_cache(cache_dir)
 
 # ---------------------------------------------------------
+
+# 앱 메인 파일 최상단에 작성
+def run_tracker():
+    if "is_tracked" not in st.session_state:
+        log_app_usage("f1_telemetry_web", "f1_telemetry_started")
+        st.session_state["is_tracked"] = True
+
+# 함수 실행
+run_tracker()
 
 class F1DashboardWindow(QMainWindow):
     def __init__(self):
