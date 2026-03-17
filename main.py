@@ -20,6 +20,22 @@ fastf1.Cache.enable_cache(cache_dir)
 
 # ---------------------------------------------------------
 
+st.markdown("---")
+st.write("🔍 [디버그] Supabase 돌직구 테스트 중...")
+
+# tracker.py를 거치지 않고 여기서 직접 쏴봅니다.
+try:
+    url = "https://gkzbiacodysnrzbpvavm.supabase.co" # (진짜 주소로 살짝 바꿔주세요)
+    key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdremJpYWNvZHlzbnJ6YnB2YXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1NzE2MTgsImV4cCI6MjA4OTE0NzYxOH0.Lv5uVeNZOyo21tgyl2jjGcESoLl_iQTJYp4jdCwuYDU" # (진짜 키로 살짝 바꿔주세요)
+    
+    client = create_client(url, key)
+    res = client.table('usage_logs').insert({"app_name": "f1_test", "action": "test_직접연결"}).execute()
+    
+    st.success(f"✅ DB에 데이터 꽂힘! 응답 결과: {res.data}")
+except Exception as e:
+    st.error(f"❌ DB가 뱉어낸 진짜 에러: {e}")
+
+
 # 앱 메인 파일 최상단에 작성
 def run_tracker():
     if "is_tracked" not in st.session_state:
