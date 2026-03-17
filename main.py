@@ -93,7 +93,6 @@ class F1DashboardWindow(QMainWindow):
         return ver_tel, ham_tel
 
 if __name__ == "__main__":
-    log_app_usage("f1_telemetry_web", "f1_telemetry_started")
     app = QApplication(sys.argv)
     window = F1DashboardWindow()
     window.show()

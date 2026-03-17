@@ -1,4 +1,7 @@
 import streamlit as st
+from tracker import log_app_usage
+
+log_app_usage("f1_telemetry_web", "f1_telemetry_started")
 
 st.set_page_config(page_title="F1 데이터 대시보드", page_icon="🏎️", layout="wide")
 
