@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 import fastf1 as ff1
-from tracker_web import log_app_usage
+from tracker_exe import log_app_usage
 from fastf1 import plotting
 from fastf1 import utils
 # 🔥 [수정] QFrame이 추가되었습니다.

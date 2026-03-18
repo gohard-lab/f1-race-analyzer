@@ -1,5 +1,5 @@
 import streamlit as st
-from tracker import log_app_usage
+from tracker_web import log_app_usage
 
 log_app_usage("f1_telemetry_web", "f1_telemetry_started")
 
