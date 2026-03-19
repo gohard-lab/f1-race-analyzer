@@ -1,6 +1,6 @@
 streamlit
-fastf1
-matplotlib
 supabase
 requests
 streamlit-javascript
+fastf1
+matplotlib
