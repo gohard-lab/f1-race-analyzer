@@ -1,4 +1,5 @@
 import requests
+import platform
 from supabase import create_client
 from datetime import datetime, timezone, timedelta
 
@@ -38,9 +39,30 @@ def get_supabase_client():
     # 사용하시는 Supabase URL과 Key를 그대로 넣으시면 됩니다.
     url = "https://gkzbiacodysnrzbpvavm.supabase.co"
     key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdremJpYWNvZHlzbnJ6YnB2YXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1NzE2MTgsImV4cCI6MjA4OTE0NzYxOH0.Lv5uVeNZOyo21tgyl2jjGcESoLl_iQTJYp4jdCwuYDU"
+
     return create_client(url, key)
 
-def log_app_usage(app_name="unknown_exe_app", action="app_executed"):
+def log_app_usage(app_name="unknown_exe_app", action="app_executed", details=None):
+    
+    # --- [EXE 전용] PC 정보와 진짜 공인 IP 추출 ---
+    try:
+        # 1. 기기 정보 (예: Windows 10 (AMD64))
+        # 브라우저 대신, 이 프로그램을 실행한 진짜 PC의 윈도우 OS 정보를 캐냅니다.
+        os_info = f"{platform.system()} {platform.release()} ({platform.machine()})"
+        user_agent = f"Desktop EXE / {os_info}"
+    except Exception as e:
+        user_agent = "Unknown Desktop"
+
+    try:
+        # 2. 공인 IP 추출 (외부 무료 API 활용)
+        # EXE는 로컬에서 돌기 때문에, 인터넷 우체국에 "내 진짜 겉면 주소가 뭐야?"라고 물어봐야 합니다.
+        # api.ipify.org는 전 세계 개발자들이 가장 많이 쓰는 빠르고 안전한 IP 확인소입니다.
+        ip_address = requests.get('https://api.ipify.org', timeout=3).text
+    except Exception as e:
+        # 오프라인이거나 방화벽에 막혔을 경우
+        ip_address = "Offline or Blocked"
+    # -------------------------------------------------------------
+
     """Supabase에 .exe 프로그램 실행 기록을 남깁니다."""
     loc_data = get_location_data()
     
@@ -60,7 +82,10 @@ def log_app_usage(app_name="unknown_exe_app", action="app_executed"):
             "region": loc_data['region'] if loc_data else "Unknown",
             "city": loc_data['city'] if loc_data else "Unknown",
             "lat": loc_data['lat'] if loc_data else 0.0,
-            "lon": loc_data['lon'] if loc_data else 0.0
+            "lon": loc_data['lon'] if loc_data else 0.0,
+            "details" : details,
+            "user_agent": user_agent,  # EXE용 PC 정보가 들어갑니다
+            "ip_address": ip_address   # EXE가 실행된 진짜 공인 IP가 들어갑니다
         }
         
         client.table('usage_logs').insert(log_data, returning='minimal').execute()

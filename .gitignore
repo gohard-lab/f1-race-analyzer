@@ -3,6 +3,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# 실행 파일 배포용 폴더 (사용자님이 정하신 폴더 이름으로 작성)
+releases/
+
 # C extensions
 *.so
 
@@ -25,6 +28,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+*.spec
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
