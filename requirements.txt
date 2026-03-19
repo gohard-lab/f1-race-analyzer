@@ -1,6 +1,0 @@
-streamlit
-supabase
-requests
-streamlit-javascript
-fastf1
-matplotlib
