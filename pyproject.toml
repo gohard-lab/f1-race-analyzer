@@ -11,3 +11,7 @@ dependencies = [
     "fastf1",
     "matplotlib"
 ]
+
+# 👇 서버의 오해를 풀어주는 마법의 두 줄 추가!
+[tool.poetry]
+package-mode = false
