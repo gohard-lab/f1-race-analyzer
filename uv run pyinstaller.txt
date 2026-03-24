@@ -1,0 +1,1 @@
+uv run pyinstaller --onefile --windowed --collect-data fastf1 --exclude-module tkinter --exclude-module IPython --exclude-module notebook d:\My_Work\Git_hub\f1-race-analyzer\f1_telemetry_exe.py
