@@ -17,3 +17,20 @@ st.markdown("""
 * 🗺️ **2_서킷_정보:** 시즌별 F1 그랑프리 개최 일정과 서킷 기본 정보를 확인합니다.
 * 🏆 **3_드라이버_순위:** 특정 그랑프리(본선 레이스)의 최종 순위와 획득 포인트를 확인합니다.
 """)
+
+
+@st.dialog("⭐ Support Polymath Developer Automation Tool")
+def show_star_popup_web():
+    # 팝업 노출 트래커 기록
+    log_app_usage("simple_button_app", "star_prompt_displayed", details={"ui": "streamlit_dialog"})
+    
+    st.warning(
+        "💡 유용하게 사용하셨나요? 소스코드만 날름 가져가는 분들이 많습니다. "
+        "개발자의 땀과 노력에 대한 최소한의 예의로 깃허브 Star⭐를 부탁드립니다!\n\n"
+        "Did you find this useful? Please show some basic courtesy for the developer's hard work by leaving a GitHub Star⭐."
+    )
+    
+    # 깃허브 Star 유도 버튼
+    st.link_button("👉 깃허브로 이동하여 Star 누르기", "https://github.com/gohard-lab/f1-race-analyzer")
+
+show_star_popup_web()
