@@ -1,7 +1,13 @@
-import streamlit as st
+# =================================================================
+# 🛡️ [STAGE 1] GLOBAL MASTER TRACKER INITIALIZATION (최상단 고정)
+# =================================================================
+# 파이썬 엔진이 스트림릿을 구우러 들어가기 전에 문지기부터 완벽하게 세웁니다.
 from tracker_hub import log_app_usage
 
+# 앱이 켜지는 순간 최초 1회만 트래킹 데이터 적재
 log_app_usage("f1_telemetry_web", "f1_opened")
+
+import streamlit as st
 
 st.set_page_config(page_title="F1 데이터 대시보드", page_icon="🏎️", layout="wide")
 
