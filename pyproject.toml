@@ -10,7 +10,7 @@ dependencies = [
     "streamlit-javascript",
     "fastf1",
     "matplotlib",
-    "tracker-hub",
+    "tracker_hub",
 ]
 
 # 👇 서버의 오해를 풀어주는 마법의 두 줄 추가!
@@ -18,4 +18,4 @@ dependencies = [
 package-mode = false
 
 [tool.uv.sources]
-tracker-hub = { git = "https://github.com/gohard-lab/tracker-hub.git" }
+tracker_hub = { git = "https://github.com/gohard-lab/tracker-hub.git" }
